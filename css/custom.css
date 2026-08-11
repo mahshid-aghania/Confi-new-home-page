@@ -1,0 +1,110 @@
+/* ===========================================
+
+TEMP FIX 2/6/25 FOR THE EXTRA SPACE ABOVE HEADERS AT TOP OF CONTENT ROW
+
+================================================ */
+.ContentRow h2.sr-only + h3,
+.ContentRow h2.sr-only + h4,
+.ContentRow h2.sr-only + h5,
+.ContentRow h2.sr-only + h6 {
+  margin-top: 0;
+}
+
+
+
+/* =============================================
+QUICK FIX TO HIDE UNSUPPORTED CLICK TO EXPAND FUNCTIONS IN BORROWED WP POSTS
+
+================================================== */
+.wp-post-content .lightbox-image-container,
+.wp-post-content  .wp-lightbox-overlay,
+.wp-post-content .lightbox-trigger {
+  display: none;
+}
+
+
+/* ===========================================================
+CODE SECTION: SCROLLING 
+
+-  STATUS: Leave in custom.css. Each school will have a different scroll-padding-top depending on their topbar treatment
+============================================================= */
+html {
+  scroll-behavior: smooth;
+}
+/* offest for sticky header: mobile height */
+[id] {
+    scroll-margin-top: 66px;
+}
+@media (min-width: 930px) {
+    [id] {
+        scroll-margin-top: 84px;
+    }
+}
+@media (prefers-reduced-motion) {
+    html {
+      scroll-behavior: auto;
+    }
+}
+
+
+
+
+/* ===========================================================
+CODE SECTION #23:
+
+- YouVisit Embed Container
+
+- STATUS: This can stay here in custom.css. Might be different in each school's custom.css (MCW)
+============================================================= */
+ .youvisit-container {
+	 height: 400px;
+}
+ @media screen and (min-width: 1000px) {
+	 .user_content ul.tour-stops, .user_content ol.tour-stops {
+		 column-count: 2;
+		 margin-left: 1.25rem;
+	}
+	 .user_content ul.tour-stops li, .user_content ol.tour-stops li {
+		 margin-left: 0;
+		 list-style-position: inside;
+	}
+}
+
+
+
+/* ===========================================================
+CODE SECTION #27:
+
+- IT Listbox StatusHub status (NE 8/23/2022)
+
+- STATUS: can stay in custom.css until either
+    - approved indefinitely -> then can be moved into Atomic docs
+    - replaced with RSS version -> then it can be deleted
+============================================================= */
+.statushub-compact-widget p {
+    margin-bottom: 18px !important;
+    display: flex;
+}
+.statushub-compact-widget img.statushub-circle-status {
+    margin-top: 4px;
+    margin-right: 9px !important;
+}
+
+
+
+/* ===========================================================
+CODE SECTION:
+
+- Social Stream 
+
+- STATUS: Keep in custom.css
+============================================================= */
+body .crt-popup-underlay {
+  background-color: rgba(0,0,0,.85);
+}
+body .crt-widget a:hover {
+  text-decoration: underline;
+}
+body .crt-post-date .crt-post-date-link {
+  opacity: .63;
+}
