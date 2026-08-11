@@ -3003,7 +3003,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <script>
  
 $(document).ready(function(){
-    var wmfeed = "https://creative.wm.edu/feeds/www/wm.php";
+    var wmfeed = "/js/feeds/spotlight.json";
     $.ajax({
         url: wmfeed,
         dataType: "json",
@@ -3015,7 +3015,7 @@ $(document).ready(function(){
         }
     });
     
-    var wmhomepagefeed = "https://creative.wm.edu/feeds/www/homepage.php";
+    var wmhomepagefeed = "/js/feeds/events.json";
     $.ajax({
         url: wmhomepagefeed,
         dataType: "json",
