@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ConfiDentist — Canada's Dental Licensing Exam Prep</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy-deep:  #0F1D3E;
+      --navy:       #1B2E5E;
+      --navy-mid:   #2E4A97;
+      --blue:       #4C6EC4;
+      --teal:       #0D9488;
+      --teal-light: #14B8A8;
+      --gold:       #F59E0B;
+      --gold-light: #FCD34D;
+      --white:      #FFFFFF;
+      --off-white:  #F8FAFC;
+      --slate:      #64748B;
+      --slate-light:#CBD5E1;
+      --text-dark:  #0F172A;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--white); }
+
+    /* ── NAV ─────────────────────────────────────────────────────── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(15,29,62,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 32px; height: 68px;
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--navy-mid);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .logo-text { color: var(--white); font-weight: 700; font-size: 17px; letter-spacing: -0.3px; }
+    .logo-text span { color: var(--gold); }
+
+    nav.main-nav { display: flex; align-items: center; gap: 4px; }
+    nav.main-nav a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none; font-size: 13.5px; font-weight: 500;
+      padding: 6px 14px; border-radius: 7px;
+      transition: background 0.15s, color 0.15s;
+    }
+    nav.main-nav a:hover { background: rgba(255,255,255,0.08); color: var(--white); }
+
+    .nav-ctas { display: flex; align-items: center; gap: 10px; }
+    .btn-ghost {
+      color: rgba(255,255,255,0.8); font-size: 13px; font-weight: 500;
+      text-decoration: none; padding: 7px 16px; border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.15s;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.1); color: var(--white); }
+    .btn-gold {
+      background: var(--gold); color: var(--navy-deep);
+      font-size: 13px; font-weight: 700;
+      text-decoration: none; padding: 8px 20px; border-radius: 8px;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    /* ── HERO ────────────────────────────────────────────────────── */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; padding-top: 68px;
+    }
+    .hero-video-wrap {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--navy-deep) 0%, #162447 40%, #1a3557 70%, #0f2d40 100%);
+    }
+    /* Replace src below with your actual video file in Avada */
+    .hero-video-wrap video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover;
+      opacity: 0.35;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(15,29,62,0.72) 0%,
+        rgba(15,29,62,0.45) 50%,
+        rgba(13,148,136,0.2) 100%
+      );
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      text-align: center; padding: 80px 24px 120px;
+      max-width: 860px; margin: 0 auto;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(245,158,11,0.15);
+      border: 1px solid rgba(245,158,11,0.35);
+      color: var(--gold-light); font-size: 11.5px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 100px; margin-bottom: 24px;
+    }
+    .hero-eyebrow::before { content: '●'; font-size: 7px; color: var(--gold); }
+    .hero-h1 {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 800; line-height: 1.08; letter-spacing: -2px;
+      color: var(--white); margin-bottom: 24px;
+    }
+    .hero-h1 em { font-style: normal; color: var(--gold); }
+    .hero-sub {
+      font-size: clamp(16px, 2.2vw, 20px);
+      color: rgba(255,255,255,0.75); line-height: 1.6;
+      max-width: 620px; margin: 0 auto 40px;
+      font-weight: 400;
+    }
+    .hero-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 64px; }
+    .cta-primary {
+      background: var(--gold); color: var(--navy-deep);
+      font-weight: 700; font-size: 15px; text-decoration: none;
+      padding: 14px 32px; border-radius: 10px;
+      transition: all 0.2s; box-shadow: 0 4px 20px rgba(245,158,11,0.35);
+    }
+    .cta-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(245,158,11,0.45); }
+    .cta-secondary {
+      background: rgba(255,255,255,0.1);
+      border: 1.5px solid rgba(255,255,255,0.35);
+      color: var(--white); font-weight: 600; font-size: 15px;
+      text-decoration: none; padding: 14px 32px; border-radius: 10px;
+      backdrop-filter: blur(8px);
+      transition: all 0.2s;
+    }
+    .cta-secondary:hover { background: rgba(255,255,255,0.18); transform: translateY(-2px); }
+
+    /* Hero stat ticker */
+    .hero-stats {
+      display: flex; justify-content: center; gap: 0; flex-wrap: wrap;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 40px;
+    }
+    .hero-stat {
+      padding: 0 40px;
+      border-right: 1px solid rgba(255,255,255,0.12);
+      text-align: center;
+    }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat-num {
+      font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 800; color: var(--white);
+      letter-spacing: -1px; line-height: 1;
+    }
+    .hero-stat-num span { color: var(--gold); }
+    .hero-stat-label {
+      font-size: 12px; color: rgba(255,255,255,0.55);
+      margin-top: 6px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em;
+    }
+
+    /* ── SECTION BASE ────────────────────────────────────────────── */
+    section { padding: 88px 24px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: 12px;
+    }
+    .section-h2 {
+      font-size: clamp(28px, 4vw, 46px);
+      font-weight: 800; letter-spacing: -1.5px;
+      color: var(--navy-deep); line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 17px; color: var(--slate); line-height: 1.65;
+      max-width: 580px;
+    }
+    .section-header { margin-bottom: 52px; }
+    .section-header.centered { text-align: center; }
+    .section-header.centered .section-sub { margin: 0 auto; }
+
+    /* ── STATS CARDS ─────────────────────────────────────────────── */
+    .stats-section { background: var(--navy-deep); }
+    .stats-label { color: var(--teal-light) !important; }
+    .stats-h2 { color: var(--white) !important; }
+    .stats-sub { color: rgba(255,255,255,0.6) !important; }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .stat-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 36px 28px;
+      position: relative; overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .stat-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+    .stat-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--gold);
+    }
+    .stat-rank { font-size: 13px; font-weight: 600; color: var(--gold); margin-bottom: 8px; }
+    .stat-big {
+      font-size: 52px; font-weight: 800; color: var(--white);
+      letter-spacing: -2px; line-height: 1; margin-bottom: 12px;
+    }
+    .stat-big sup { font-size: 22px; vertical-align: super; }
+    .stat-desc { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.5; }
+    .stat-source { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 12px; }
+
+    /* ── COURSES ─────────────────────────────────────────────────── */
+    .courses-section { background: var(--off-white); }
+    .courses-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .course-card {
+      background: var(--white); border-radius: 14px;
+      border: 1px solid #E2E8F0;
+      padding: 28px; display: flex; flex-direction: column;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .course-card:hover { box-shadow: 0 8px 32px rgba(15,29,62,0.10); transform: translateY(-3px); }
+    .course-tag {
+      display: inline-block;
+      font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 6px;
+      margin-bottom: 16px;
+    }
+    .course-name { font-size: 17px; font-weight: 700; color: var(--navy-deep); margin-bottom: 8px; line-height: 1.3; }
+    .course-desc { font-size: 14px; color: var(--slate); line-height: 1.6; flex: 1; }
+    .course-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 20px; padding-top: 16px;
+      border-top: 1px solid #F1F5F9;
+    }
+    .course-price { font-size: 15px; font-weight: 700; color: var(--navy-deep); }
+    .course-link {
+      font-size: 13px; font-weight: 600; color: var(--teal);
+      text-decoration: none;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .course-link::after { content: '→'; }
+    .course-link:hover { color: var(--navy-mid); }
+
+    /* ── RESEARCH / WHY SECTION ──────────────────────────────────── */
+    .why-section { background: var(--white); }
+    .why-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center;
+    }
+    .why-img {
+      border-radius: 20px; overflow: hidden;
+      background: linear-gradient(135deg, var(--navy-deep), var(--navy-mid));
+      aspect-ratio: 4/3;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .why-img-inner {
+      text-align: center; color: var(--white); padding: 40px;
+    }
+    .why-img-icon { font-size: 64px; margin-bottom: 16px; }
+    .why-img-text { font-size: 18px; font-weight: 600; color: rgba(255,255,255,0.85); }
+    .why-img-stat {
+      position: absolute; bottom: 24px; right: 24px;
+      background: var(--gold); color: var(--navy-deep);
+      font-size: 13px; font-weight: 700;
+      padding: 8px 16px; border-radius: 8px;
+    }
+    .why-features { display: flex; flex-direction: column; gap: 28px; margin-top: 36px; }
+    .why-feature { display: flex; gap: 16px; align-items: flex-start; }
+    .why-icon {
+      width: 44px; height: 44px; border-radius: 10px; shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+    }
+    .why-feature-text h4 { font-size: 15px; font-weight: 700; color: var(--navy-deep); margin-bottom: 4px; }
+    .why-feature-text p { font-size: 14px; color: var(--slate); line-height: 1.6; }
+
+    /* ── TESTIMONIALS ────────────────────────────────────────────── */
+    .testimonials-section { background: var(--navy-deep); padding: 88px 24px; }
+    .test-label { color: var(--teal-light) !important; }
+    .test-h2 { color: var(--white) !important; }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .test-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 28px;
+      transition: transform 0.2s;
+    }
+    .test-card:hover { transform: translateY(-3px); }
+    .test-stars { color: var(--gold); font-size: 16px; margin-bottom: 16px; letter-spacing: 3px; }
+    .test-quote { font-size: 15px; color: rgba(255,255,255,0.82); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+    .test-author { display: flex; align-items: center; gap: 12px; }
+    .test-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--navy-mid);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 700; color: var(--white);
+    }
+    .test-name { font-size: 14px; font-weight: 600; color: var(--white); }
+    .test-meta { font-size: 12px; color: rgba(255,255,255,0.45); }
+    .test-badge {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      padding: 2px 8px; border-radius: 4px; margin-left: 6px;
+      background: rgba(245,158,11,0.2); color: var(--gold);
+    }
+
+    /* ── NEWS ────────────────────────────────────────────────────── */
+    .news-section { background: var(--off-white); }
+    .news-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .news-card {
+      background: var(--white); border-radius: 14px;
+      border: 1px solid #E2E8F0; overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .news-card:hover { box-shadow: 0 8px 32px rgba(15,29,62,0.10); transform: translateY(-3px); }
+    .news-thumb {
+      height: 160px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 40px;
+    }
+    .news-body { padding: 20px; }
+    .news-tag {
+      display: inline-block; font-size: 10.5px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 8px;
+    }
+    .news-title { font-size: 15px; font-weight: 700; color: var(--navy-deep); line-height: 1.4; margin-bottom: 8px; }
+    .news-date { font-size: 12px; color: var(--slate); }
+
+    /* ── CTA BAND ────────────────────────────────────────────────── */
+    .cta-band {
+      background: linear-gradient(135deg, var(--teal) 0%, var(--navy-mid) 100%);
+      padding: 80px 24px; text-align: center;
+    }
+    .cta-band h2 {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800; color: var(--white);
+      letter-spacing: -1.5px; margin-bottom: 16px;
+    }
+    .cta-band p { font-size: 18px; color: rgba(255,255,255,0.8); margin-bottom: 36px; }
+    .cta-band-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── FOOTER ──────────────────────────────────────────────────── */
+    footer {
+      background: var(--navy-deep);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 60px 24px 32px;
+    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand .logo-text { font-size: 20px; }
+    .footer-brand p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.6; margin: 16px 0 24px; }
+    .footer-socials { display: flex; gap: 10px; }
+    .social-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; text-decoration: none;
+      transition: background 0.15s;
+    }
+    .social-icon:hover { background: rgba(255,255,255,0.15); }
+    .footer-col h4 { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.35); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a { font-size: 14px; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.15s; }
+    .footer-col ul li a:hover { color: var(--white); }
+    .footer-bottom {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 28px; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-copy { font-size: 13px; color: rgba(255,255,255,0.35); }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a { font-size: 13px; color: rgba(255,255,255,0.35); text-decoration: none; }
+    .footer-legal a:hover { color: rgba(255,255,255,0.6); }
+    .footer-location { font-size: 13px; color: rgba(255,255,255,0.35); display: flex; align-items: center; gap: 6px; }
+
+    /* ── UTILITIES ───────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .why-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      nav.main-nav { display: none; }
+      .hero-stat { padding: 0 24px; }
+    }
+    @media (max-width: 600px) {
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .hero-stats { flex-direction: column; gap: 24px; }
+      .hero-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.12); padding: 0 0 24px; }
+      .hero-stat:last-child { border-bottom: none; padding-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HEADER ──────────────────────────────────────────────────────── -->
+  <header>
+    <div class="nav-inner">
+      <a href="/" class="logo">
+        <div class="logo-icon">🦷</div>
+        <span class="logo-text">Confi<span>Dentist</span></span>
+      </a>
+
+      <nav class="main-nav">
+        <a href="#courses">Courses</a>
+        <a href="#why">Why ConfiDentist</a>
+        <a href="#testimonials">Success Stories</a>
+        <a href="#news">News</a>
+        <a href="#about">About</a>
+      </nav>
+
+      <div class="nav-ctas">
+        <a href="#" class="btn-ghost">Sign In</a>
+        <a href="#" class="btn-gold">Enrol Now</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── HERO ────────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-video-wrap">
+      <!-- In Avada: your video banner handles this background automatically -->
+      <!-- <video autoplay muted loop playsinline>
+        <source src="your-background-video.mp4" type="video/mp4" />
+      </video> -->
+    </div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">Canada's Dental Licensing Exam Prep Platform</div>
+
+      <h1 class="hero-h1">
+        Start Your<br />
+        <em>ConfiDentist</em><br />
+        Exam Journey Here
+      </h1>
+
+      <p class="hero-sub">
+        From AFK to NDECC — our expert-led courses are designed specifically for internationally trained dentists preparing for Canadian licensing exams.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="#courses" class="cta-primary">Explore Courses</a>
+        <a href="#" class="cta-secondary">Book a Free Consultation</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num">1,084<span>+</span></div>
+          <div class="hero-stat-label">Students Trained</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">96<span>%</span></div>
+          <div class="hero-stat-label">Satisfaction Rate</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">6</div>
+          <div class="hero-stat-label">Exam Courses</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">78<span>%</span></div>
+          <div class="hero-stat-label">Completion Rate</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STATS ────────────────────────────────────────────────────────── -->
+  <section class="stats-section" id="about">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label stats-label">ConfiDentist by the Numbers</p>
+        <h2 class="section-h2 stats-h2">Proven results for<br />internationally trained dentists</h2>
+        <p class="section-sub stats-sub">Our track record speaks for itself. Join over a thousand dentists who have taken the next step in their Canadian career with ConfiDentist.</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-rank">#1 Rated Platform</div>
+          <div class="stat-big"><sup>#</sup>1</div>
+          <div class="stat-desc">Rated dental licensing exam prep platform by Canadian dental communities</div>
+          <div class="stat-source">Source: Student Surveys 2025</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-rank">Pass Rate</div>
+          <div class="stat-big">85<sup>%</sup></div>
+          <div class="stat-desc">Of ConfiDentist students pass their licensing exam on the first attempt</div>
+          <div class="stat-source">Source: Internal Graduate Tracking</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-rank">Student Satisfaction</div>
+          <div class="stat-big">96<sup>%</sup></div>
+          <div class="stat-desc">Student satisfaction rating across all courses and coaching sessions</div>
+          <div class="stat-source">Source: Post-Course Surveys</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-rank">Countries Represented</div>
+          <div class="stat-big">30<sup>+</sup></div>
+          <div class="stat-desc">Countries our students come from, spanning six continents</div>
+          <div class="stat-source">Source: Enrollment Data 2024–2025</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── COURSES ──────────────────────────────────────────────────────── -->
+  <section class="courses-section" id="courses">
+    <div class="container">
+      <div class="section-header centered">
+        <p class="section-label">Our Programs</p>
+        <h2 class="section-h2">ConfiDentist students think critically<br />and practise with confidence</h2>
+        <p class="section-sub">Each course is built around the specific exam format and competencies Canadian regulators test for.</p>
+      </div>
+
+      <div class="courses-grid">
+        <div class="course-card">
+          <span class="course-tag" style="background:#E8EDF8;color:#1B2E5E;">AFK</span>
+          <div class="course-name">Assessment of Fundamental Knowledge</div>
+          <div class="course-desc">Master the foundational biomedical and clinical sciences tested in the NDEB AFK examination through structured modules, practice cases, and mock exams.</div>
+          <div class="course-meta">
+            <span class="course-price">$500 CAD</span>
+            <a href="#" class="course-link">Learn more</a>
+          </div>
+        </div>
+        <div class="course-card">
+          <span class="course-tag" style="background:#EEF0FB;color:#2E4A97;">ACJ</span>
+          <div class="course-name">Assessment of Clinical Judgement</div>
+          <div class="course-desc">Develop the clinical decision-making skills required for the ACJ, including case-based reasoning and patient management under realistic exam conditions.</div>
+          <div class="course-meta">
+            <span class="course-price">$800 CAD</span>
+            <a href="#" class="course-link">Learn more</a>
+          </div>
+        </div>
+        <div class="course-card">
+          <span class="course-tag" style="background:#CCFBF1;color:#0D9488;">NDECC</span>
+          <div class="course-name">NDECC Clinical Skills & Situational Judgement</div>
+          <div class="course-desc">Comprehensive preparation for the NDECC, covering clinical skill stations, situational judgement tests, and examiner feedback simulations.</div>
+          <div class="course-meta">
+            <span class="course-price">$1,200 CAD</span>
+            <a href="#" class="course-link">Learn more</a>
+          </div>
+        </div>
+        <div class="course-card">
+          <span class="course-tag" style="background:#E0E7FF;color:#4C6EC4;">OSCE</span>
+          <div class="course-name">Virtual OSCE Preparation</div>
+          <div class="course-desc">Live virtual OSCE simulations with dental professionals, immediate feedback, and station-by-station improvement plans tailored to your performance.</div>
+          <div class="course-meta">
+            <span class="course-price">$600 CAD</span>
+            <a href="#" class="course-link">Learn more</a>
+          </div>
+        </div>
+        <div class="course-card">
+          <span class="course-tag" style="background:#FEF9C3;color:#A16207;">ADAT</span>
+          <div class="course-name">Advanced Dental Admission Test</div>
+          <div class="course-desc">Full ADAT prep covering perceptual ability, reading comprehension, quantitative reasoning, and dental sciences — with adaptive practice testing.</div>
+          <div class="course-meta">
+            <span class="course-price">$700 CAD</span>
+            <a href="#" class="course-link">Learn more</a>
+          </div>
+        </div>
+        <div class="course-card">
+          <span class="course-tag" style="background:#EDE9FE;color:#6366F1;">Interview</span>
+          <div class="course-name">University Interview Coaching</div>
+          <div class="course-desc">One-on-one coaching for Canadian dental school interviews — MMI, panel, and traditional formats. Role-play, feedback, and confidence building.</div>
+          <div class="course-meta">
+            <span class="course-price">$400 CAD</span>
+            <a href="#" class="course-link">Learn more</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WHY CONFIDENTIST ──────────────────────────────────────────────── -->
+  <section class="why-section" id="why">
+    <div class="container">
+      <div class="why-grid">
+        <div class="why-img">
+          <div class="why-img-inner">
+            <div class="why-img-icon">🦷</div>
+            <div class="why-img-text">Expert-Led,<br />Canada-Focused Prep</div>
+          </div>
+          <div class="why-img-stat">85% First-Try Pass Rate</div>
+        </div>
+        <div>
+          <p class="section-label">Why ConfiDentist</p>
+          <h2 class="section-h2">Built for internationally trained dentists — by people who understand the path</h2>
+          <p class="section-sub">We know the NDEB process inside out. Our instructors have guided hundreds of dentists through every step of Canadian licensing.</p>
+
+          <div class="why-features">
+            <div class="why-feature">
+              <div class="why-icon" style="background:#E8EDF8;">🎯</div>
+              <div class="why-feature-text">
+                <h4>Exam-Focused Curriculum</h4>
+                <p>Every module is mapped directly to the NDEB and NDECC competency frameworks — no filler, no guessing.</p>
+              </div>
+            </div>
+            <div class="why-feature">
+              <div class="why-icon" style="background:#CCFBF1;">🧑‍⚕️</div>
+              <div class="why-feature-text">
+                <h4>Live Coaching with Dental Professionals</h4>
+                <p>Get feedback from practicing Canadian dentists and examiners who know exactly what evaluators look for.</p>
+              </div>
+            </div>
+            <div class="why-feature">
+              <div class="why-icon" style="background:#FEF9C3;">🌍</div>
+              <div class="why-feature-text">
+                <h4>Community of 1,000+ International Dentists</h4>
+                <p>Join a peer network spanning 30+ countries — share strategies, study together, and celebrate passes.</p>
+              </div>
+            </div>
+            <div class="why-feature">
+              <div class="why-icon" style="background:#EDE9FE;">💳</div>
+              <div class="why-feature-text">
+                <h4>Flexible Payment Plans</h4>
+                <p>Pay in full or spread the cost over 2–4 installments. We work with your budget so finances don't block your progress.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS ──────────────────────────────────────────────────── -->
+  <section class="testimonials-section" id="testimonials">
+    <div class="container">
+      <div class="section-header centered">
+        <p class="section-label test-label">Student Success Stories</p>
+        <h2 class="section-h2 test-h2">Bold leaders. Confident dentists.<br />Proud Canadians.</h2>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="test-card">
+          <div class="test-stars">★★★★★</div>
+          <p class="test-quote">"The NDECC course gave me exactly what I needed — structured feedback, real exam simulations, and the confidence to walk in and pass. I can't recommend it enough."</p>
+          <div class="test-author">
+            <div class="test-avatar">AP</div>
+            <div>
+              <div class="test-name">Aisha Parveen <span class="test-badge">PASSED</span></div>
+              <div class="test-meta">NDECC · Cairo, Egypt → Toronto, Canada</div>
+            </div>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="test-stars">★★★★★</div>
+          <p class="test-quote">"I failed the AFK on my own. After three months with ConfiDentist I passed comfortably. The mock exams are incredibly close to the real thing."</p>
+          <div class="test-author">
+            <div class="test-avatar">RN</div>
+            <div>
+              <div class="test-name">Ramin Nazari <span class="test-badge">PASSED</span></div>
+              <div class="test-meta">AFK + ACJ · Tehran, Iran → Vancouver, Canada</div>
+            </div>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="test-stars">★★★★★</div>
+          <p class="test-quote">"The interview coaching was a game-changer. I felt genuinely prepared for every MMI station. Matched to my first-choice program."</p>
+          <div class="test-author">
+            <div class="test-avatar">LK</div>
+            <div>
+              <div class="test-name">Li Ke <span class="test-badge">ACCEPTED</span></div>
+              <div class="test-meta">Interview Coaching · Beijing, China → Ottawa, Canada</div>
+            </div>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="test-stars">★★★★★</div>
+          <p class="test-quote">"Flexible payments made it possible for me to enrol when I otherwise couldn't. The installment plan was clear and there was no pressure at all."</p>
+          <div class="test-author">
+            <div class="test-avatar">OS</div>
+            <div>
+              <div class="test-name">Omar Saleh <span class="test-badge">PASSED</span></div>
+              <div class="test-meta">OSCE · Riyadh, Saudi Arabia → Calgary, Canada</div>
+            </div>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="test-stars">★★★★★</div>
+          <p class="test-quote">"I studied for the ADAT for months with other resources and got nowhere. ConfiDentist's structured approach helped me score in the 90th percentile."</p>
+          <div class="test-author">
+            <div class="test-avatar">PT</div>
+            <div>
+              <div class="test-name">Priya Thakur <span class="test-badge">PASSED</span></div>
+              <div class="test-meta">ADAT · Mumbai, India → Montreal, Canada</div>
+            </div>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="test-stars">★★★★★</div>
+          <p class="test-quote">"The ACJ course walks you through clinical reasoning in a way no textbook does. My cohort became a real support group. We all passed together."</p>
+          <div class="test-author">
+            <div class="test-avatar">MB</div>
+            <div>
+              <div class="test-name">Maria Bowen <span class="test-badge">PASSED</span></div>
+              <div class="test-meta">ACJ · Lagos, Nigeria → Edmonton, Canada</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── NEWS ─────────────────────────────────────────────────────────── -->
+  <section class="news-section" id="news">
+    <div class="container">
+      <div class="section-header" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:40px;">
+        <div>
+          <p class="section-label">Latest Updates</p>
+          <h2 class="section-h2" style="margin-bottom:0">News &amp; Resources</h2>
+        </div>
+        <a href="#" class="course-link" style="font-size:14px;">See all news →</a>
+      </div>
+
+      <div class="news-grid">
+        <div class="news-card">
+          <div class="news-thumb" style="background:linear-gradient(135deg,#E8EDF8,#C7D2F0);">📋</div>
+          <div class="news-body">
+            <span class="news-tag">NDEB Update</span>
+            <div class="news-title">NDEB Announces 2026 AFK Exam Date Changes — What You Need to Know</div>
+            <div class="news-date">August 5, 2026</div>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-thumb" style="background:linear-gradient(135deg,#CCFBF1,#99F6E4);">🏥</div>
+          <div class="news-body">
+            <span class="news-tag">Clinical Skills</span>
+            <div class="news-title">New NDECC Station Types Added for 2026 — Our Curriculum Has Been Updated</div>
+            <div class="news-date">July 22, 2026</div>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-thumb" style="background:linear-gradient(135deg,#FEF9C3,#FDE68A);">🎓</div>
+          <div class="news-body">
+            <span class="news-tag">Student Success</span>
+            <div class="news-title">96 ConfiDentist Students Passed Their Exams in Summer 2026 — Highest Ever</div>
+            <div class="news-date">July 10, 2026</div>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-thumb" style="background:linear-gradient(135deg,#EDE9FE,#DDD6FE);">📚</div>
+          <div class="news-body">
+            <span class="news-tag">Resource Guide</span>
+            <div class="news-title">Free Guide: The Complete Roadmap to Canadian Dental Licensure for IMGs</div>
+            <div class="news-date">June 28, 2026</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA BAND ──────────────────────────────────────────────────────── -->
+  <section class="cta-band">
+    <div class="container">
+      <h2>Ready to start your Canadian dental career?</h2>
+      <p>Join 1,084+ internationally trained dentists who chose ConfiDentist.</p>
+      <div class="cta-band-btns">
+        <a href="#courses" class="cta-primary">View All Courses</a>
+        <a href="#" class="cta-secondary">Book a Free Consultation</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="/" class="logo">
+            <div class="logo-icon" style="width:36px;height:36px;font-size:18px;">🦷</div>
+            <span class="logo-text">Confi<span>Dentist</span></span>
+          </a>
+          <p>Canada's leading exam preparation platform for internationally trained dentists. Based in Toronto, serving students worldwide.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-icon">📘</a>
+            <a href="#" class="social-icon">📸</a>
+            <a href="#" class="social-icon">💼</a>
+            <a href="#" class="social-icon">▶️</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Courses</h4>
+          <ul>
+            <li><a href="#">AFK</a></li>
+            <li><a href="#">ACJ</a></li>
+            <li><a href="#">NDECC</a></li>
+            <li><a href="#">Virtual OSCE</a></li>
+            <li><a href="#">ADAT</a></li>
+            <li><a href="#">Interview Coaching</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Resources For</h4>
+          <ul>
+            <li><a href="#">New Students</a></li>
+            <li><a href="#">Current Students</a></li>
+            <li><a href="#">International IMGs</a></li>
+            <li><a href="#">Parents &amp; Families</a></li>
+            <li><a href="#">Referring Schools</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Student Portal</a></li>
+            <li><a href="#">Exam Dates</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2026 ConfiDentist. All rights reserved.</div>
+        <div class="footer-location">📍 Toronto, Ontario, Canada</div>
+        <div class="footer-legal">
+          <a href="#">Accessibility</a>
+          <a href="#">Privacy &amp; Security</a>
+          <a href="#">Non-Discrimination</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
